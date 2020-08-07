@@ -16,6 +16,8 @@ jobs:
           java-version: 1.8
       - name: change Directory
         run: cd UI/
+      - name: Directory list
+        run: ls
       - name: Build with Maven
         run: mvn install
       - name: Upload artifacts
@@ -42,6 +44,7 @@ jobs:
         run: pwd
       - name: Target folder
         run: ls
+        working-directory: ${{ env.working-directory }}
       - name: Build the Docker image
         run: docker build -t thoughtworksindia/hygieia-ui:${{ env.RELEASE_VERSION }} -t thoughtworksindia/hygieia-ui:latest .
         working-directory: ${{ env.working-directory }}
