@@ -37,7 +37,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: target
-          path: UI/
+          path: UI/dist
       - name: Folder items
         run: ls
         working-directory: UI/
