@@ -23,7 +23,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: target
-          path: UI/target
+          path: UI/dist
 
   dockerize:
     if: success()
@@ -37,6 +37,10 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: target
+          path: UI/
+      - name: Folder items
+        run: ls
+        working-directory: UI/
       - name: Set env
         run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:11}
       - name: Build the Docker image
