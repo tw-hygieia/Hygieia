@@ -40,6 +40,8 @@ jobs:
         run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:11}
       - name: Print working directory
         run: pwd
+      - name: Target folder
+        run: ls
       - name: Build the Docker image
         run: docker build -t thoughtworksindia/hygieia-ui:${{ env.RELEASE_VERSION }} -t thoughtworksindia/hygieia-ui:latest .
         working-directory: ${{ env.working-directory }}
