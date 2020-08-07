@@ -38,8 +38,6 @@ jobs:
           name: target
       - name: Set env
         run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:11}
-      - name: change Directory
-        run: cd UI/
       - name: Print working directory
         run: pwd
       - name: Build the Docker image
