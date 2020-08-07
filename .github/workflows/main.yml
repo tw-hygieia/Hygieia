@@ -25,7 +25,7 @@ jobs:
           path: UI/target
 
   dockerize:
-    if: success() && startsWith(github.ref, 'refs/tags/v')
+    if: success()
     needs: build
     runs-on: ubuntu-latest
     steps:
