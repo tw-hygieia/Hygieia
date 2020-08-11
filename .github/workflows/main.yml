@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - '*'
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env: 
-      working-directory:  UI/
+    env:
+      working-directory: UI/
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
@@ -26,11 +28,11 @@ jobs:
           path: UI/dist
 
   dockerize:
-    if: success()
+    if: success() && startsWith(github.ref, 'refs/tags/v')
     needs: build
     runs-on: ubuntu-latest
-    env: 
-      working-directory:  UI/
+    env:
+      working-directory: UI/
     steps:
       - uses: actions/checkout@v2
       - name: Download artifacts
@@ -38,9 +40,6 @@ jobs:
         with:
           name: target
           path: UI/dist
-      - name: Folder items
-        run: ls
-        working-directory: UI/
       - name: Set env
         run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:11}
       - name: Build the Docker image
