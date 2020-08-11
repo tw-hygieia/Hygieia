@@ -18,6 +18,8 @@ services:
   ui:
     build: UI
     image: hygieia-ui
+    depends_on:
+      - api
     ports:
       - "3000:80"
 
